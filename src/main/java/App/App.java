@@ -7,6 +7,7 @@ import Entidades.Restaurante;
 import Servicios.RestauranteService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class App {
                 "laFerni@email.com", "Córdoba"));
     }
 
-    public static List<Reserva> cargarReservas(Restaurante restaurante) {
+    public static void cargarReservas(Restaurante restaurante) {
         restaurante.addReserva(new Reserva(
                 restaurante.getClientePorDni("29055641J"),
                 LocalDate.now().plusDays(1),
@@ -167,24 +168,22 @@ public class App {
                 110.0,
                 EstadoReserva.PENDIENTE,
                 "salón"));
-            return null;
     }
     static void main(String[] args) {
         Restaurante r = new Restaurante("Restaurante AcalaMama");
 
-
-        //CLIENTES
+        // CLIENTES
         cargarClientes(r);
+        // RESERVAS
+        cargarReservas(r);
 
-        //RESERVAS
-        List<Reserva> reservas = new ArrayList<>();
-        RestauranteService cr = new RestauranteService(reservas);
-        System.out.println(r.getReservas());
+        //Creamos el servicio
+        RestauranteService rs = new RestauranteService(r.getReservas());
 
 
         //Consultas
         /** 1. Reservas confirmadas de una fecha concreta */
-        cr.getReservasConfirmadas(LocalDate.now());
+        IO.println(rs.getReservasConfirmadas(LocalDate.of(2026,04,15)));
 
         /** 2. Reservas de más de X personas */
 

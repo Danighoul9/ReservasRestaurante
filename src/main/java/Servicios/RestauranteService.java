@@ -15,11 +15,11 @@ public class RestauranteService {
     }
 
     /** 1. Reservas confirmadas de una fecha concreta */
-    public void getReservasConfirmadas(LocalDate fecha) {
-        reservas.stream()
+    public List<Reserva> getReservasConfirmadas(LocalDate fecha) {
+        return reservas.stream()
                 .filter(r -> r.getFecha().equals(fecha))
                 .filter(r -> r.getEstado() == EstadoReserva.CONFIRMADA)
-                .forEach(IO::println);
+                .toList();
     }
 
     /** 2. Reservas de más de X personas */

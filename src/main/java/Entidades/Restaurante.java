@@ -39,11 +39,4 @@ public class Restaurante {
         return null;
     }
 
-    public Reserva getReservas(){
-        for (Reserva r : reservas) {
-            return r;
-        }
-        return null;
-    }
-
 }
