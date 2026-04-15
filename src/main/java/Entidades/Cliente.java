@@ -17,4 +17,16 @@ public class Cliente {
     private String telefono;
     private String email;
     private String ciudad;
+
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("|| DNI: ");
+        sb.append(dni);
+        sb.append("| Nombre: ").append(nombre);
+        sb.append("| Email:  ").append(email);
+        sb.append("| Tlf: ").append(telefono);
+        sb.append("| Ciudad: ").append(ciudad + " ||").append('\n');
+        return sb.toString();
+    }
 }

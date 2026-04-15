@@ -7,10 +7,7 @@ import Entidades.Restaurante;
 import Servicios.RestauranteService;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class App {
 
@@ -23,7 +20,7 @@ public class App {
                 "Eustak@email.com", "Valencia"));
         restaurante.addCliente(new Cliente("23044981M", "Mark", "788923412",
                 "GodHand@email.com", "Sevilla"));
-        restaurante.addCliente(new Cliente("28358109O", "Alex", "655243644",
+        restaurante.addCliente(new Cliente("28358109OS", "Alex", "655243644",
                 "AleXander@email.com", "Málaga"));
         restaurante.addCliente(new Cliente("21777839N", "Marina", "788987645",
                 "Marinette@email.com", "Granada"));
@@ -54,8 +51,8 @@ public class App {
 
         restaurante.addReserva(new Reserva(
                 restaurante.getClientePorDni("20123994K"),
-                LocalDate.now().plusDays(3),
-                LocalTime.of(22, 0),
+                LocalDate.now(),
+                LocalTime.now(),
                 6,
                 120.0,
                 EstadoReserva.CONFIRMADA,
@@ -71,9 +68,9 @@ public class App {
                 "terraza"));
 
         restaurante.addReserva(new Reserva(
-                restaurante.getClientePorDni("28358109O"),
-                LocalDate.now().plusDays(4),
-                LocalTime.of(21, 0),
+                restaurante.getClientePorDni("28358109OS"),
+                LocalDate.now(),
+                LocalTime.now(),
                 5,
                 100.0,
                 EstadoReserva.CANCELADA,
@@ -117,7 +114,7 @@ public class App {
 
         restaurante.addReserva(new Reserva(
                 restaurante.getClientePorDni("27881928P"),
-                LocalDate.now().plusDays(7),
+                LocalDate.now(),
                 LocalTime.of(22, 0),
                 4,
                 90.0,
@@ -143,9 +140,9 @@ public class App {
                 "salón"));
 
         restaurante.addReserva(new Reserva(
-                restaurante.getClientePorDni("28358109O"),
-                LocalDate.now().plusDays(5),
-                LocalTime.of(20, 30),
+                restaurante.getClientePorDni("28358109OS"),
+                LocalDate.now(),
+                LocalTime.now(),
                 2,
                 50.0,
                 EstadoReserva.CANCELADA,
@@ -153,15 +150,15 @@ public class App {
 
         restaurante.addReserva(new Reserva(
                 restaurante.getClientePorDni("21777839N"),
-                LocalDate.now().plusDays(4),
-                LocalTime.of(22, 0),
+                LocalDate.now(),
+                LocalTime.now(),
                 4,
                 85.0,
                 EstadoReserva.CONFIRMADA,
                 "terraza"));
 
         restaurante.addReserva(new Reserva(
-                restaurante.getClientePorDni("23492019X"),
+                restaurante.getClientePorDni("23044981M"),
                 LocalDate.now(),
                 LocalTime.now(),
                 5,
@@ -183,35 +180,64 @@ public class App {
 
         //Consultas
         /** 1. Reservas confirmadas de una fecha concreta */
-        IO.println(rs.getReservasConfirmadas(LocalDate.of(2026,04,15)));
+        IO.println("---------------------- 1. -------------------------");
+        IO.println(rs.getReservasConfirmadas(LocalDate.now()));
 
         /** 2. Reservas de más de X personas */
+        IO.println("---------------------- 2. -------------------------");
+        IO.println(rs.getReservasGrandes(2));
 
         /** 3. Primera reserva cancelada */
+        IO.println("---------------------- 3. -------------------------");
+        IO.println(rs.getPrimeraCancelada());
 
         /** 4. Reservas ordenadas por número de personas */
+        IO.println("---------------------- 4. -------------------------");
+        IO.println(rs.getReservasOrdenadas(LocalDate.now()));
 
         /** 5. Clientes con reservas grandes */
+        IO.println("---------------------- 5. -------------------------");
+        IO.println(rs.getClientesReservasGrandes());
 
         /** 6. Total previsto de reservas atendidas */
+        IO.println("---------------------- 6. -------------------------");
+        IO.println(rs.getTotalPrevistoAtendidas() + "€");
 
         /** 7. Número de reservas por estado */
+        IO.println("---------------------- 7. -------------------------");
+        IO.println(rs.getReservasPorEstado());
 
         /** 8. Número de reservas por zona */
+        IO.println("---------------------- 8. -------------------------");
+        IO.println(rs.getReservasPorZona());
 
         /** 9. Reservas agrupadas por fecha */
+        IO.println("---------------------- 9. -------------------------");
+        IO.println(rs.getReservasAgrupadasPorFecha());
 
         /** 10. Cliente con más reservas */
+        IO.println("---------------------- 10. -------------------------");
+        IO.println(rs.getClienteTop());
 
         /** 11. Recaudación prevista por fecha */
+        IO.println("---------------------- 11. -------------------------");
+        IO.println(rs.getTotalPrevistoAgrupadoPorFecha() + "€");
 
         /** 12. Estadísticas de comensales */
+        IO.println("---------------------- 12. -------------------------");
+        IO.println(rs.getEstadisticasNumPersonas());
 
         /** 13. Clientes ordenados alfabéticamente */
+        IO.println("---------------------- 13. -------------------------");
+        IO.println(rs.getClientes());
 
         /** 14. Reservas futuras agrupadas por fecha */
+        IO.println("---------------------- 14. -------------------------");
+        //IO.println(rs.());
 
         /** 15. Porcentaje de reservas canceladas */
+        IO.println("---------------------- 15. -------------------------");
+        //IO.println(rs.());
 
     }
 
