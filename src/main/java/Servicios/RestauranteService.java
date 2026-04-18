@@ -132,11 +132,22 @@ public class RestauranteService {
 
     /** 14. Crear un mapa donde la clave sea la fecha y el valor sea la lista de reservas de ese día,
      * para las reservas a partir de hoy. Las reservas deben estar previamente ordenadas por fecha.*/
-    //  getReservasFuturasAgrupadasPorFecha();
+    public Map<LocalDate, List<Reserva>> getReservasFuturasAgrupadasPorFecha() {
+        return reservas.stream()
+                .filter(r -> r.getFecha().isAfter(LocalDate.now()) || r.getFecha().isEqual(LocalDate.now()))
+                .sorted(Comparator.comparing(Reserva::getFecha))
+                .collect(Collectors.groupingBy(Reserva::getFecha));
+    }
 
     /** 15. Calcular qué porcentaje del total de reservas están canceladas. */
-    //  getPorcentajeCanceladas();
 
+    public double getPorcentajeCanceladas() {
+        long canceladas = reservas.stream()
+                .filter(r -> r.getEstado() == EstadoReserva.CANCELADA)
+                .count();
+
+        return (canceladas * 100.0) /  reservas.size();
+    }
 }
 
 

@@ -233,11 +233,11 @@ public class App {
 
         /** 14. Reservas futuras agrupadas por fecha */
         IO.println("---------------------- 14. -------------------------");
-        //IO.println(rs.());
+        IO.println(rs.getReservasFuturasAgrupadasPorFecha());
 
         /** 15. Porcentaje de reservas canceladas */
         IO.println("---------------------- 15. -------------------------");
-        //IO.println(rs.());
+        IO.println("Porcentaje reservas canceladas: " + rs.getPorcentajeCanceladas() + "%");
 
     }
 
