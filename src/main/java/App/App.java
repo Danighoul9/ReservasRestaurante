@@ -221,7 +221,7 @@ public class App {
 
         /** 11. Recaudación prevista por fecha */
         IO.println("---------------------- 11. -------------------------");
-        IO.println(rs.getTotalPrevistoAgrupadoPorFecha() + "€");
+        IO.println(rs.getTotalPrevistoAgrupadoPorFecha());
 
         /** 12. Estadísticas de comensales */
         IO.println("---------------------- 12. -------------------------");
@@ -233,7 +233,7 @@ public class App {
 
         /** 14. Reservas futuras agrupadas por fecha */
         IO.println("---------------------- 14. -------------------------");
-        //IO.println(rs.());
+        IO.println(rs.getReservasFuturasAgrupadasPorFecha());
 
         /** 15. Porcentaje de reservas canceladas */
         IO.println("---------------------- 15. -------------------------");

@@ -100,18 +100,21 @@ public class RestauranteService {
 
     /** 10. Cliente con más reservas */
     public Optional<Cliente> getClienteTop() {
+        //Explicado por el maestro
         return reservas.stream()
-                .map(Reserva::getCliente)
-                .max(Comparator.comparing(Cliente::getNombre));
+                .collect(Collectors.groupingBy(Reserva::getCliente,Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey);
     }
 
     /** 11. Mostrar la suma del importe previsto de las reservas
      agrupada por fecha*/
-    // No se si esta correcta, ***PREGUNTAR***
-    public Double getTotalPrevistoAgrupadoPorFecha(){
+    public Map<LocalDate, Double> getTotalPrevistoAgrupadoPorFecha(){
         return reservas.stream()
-                .mapToDouble(Reserva::getImportePrevisto)
-                .sum();
+                .collect(Collectors.groupingBy(Reserva::getFecha,
+                        Collectors.summingDouble(Reserva::getImportePrevisto)));
     }
 
     /** 12. Estadísticas de comensales */
@@ -132,10 +135,22 @@ public class RestauranteService {
 
     /** 14. Crear un mapa donde la clave sea la fecha y el valor sea la lista de reservas de ese día,
      * para las reservas a partir de hoy. Las reservas deben estar previamente ordenadas por fecha.*/
-    //  getReservasFuturasAgrupadasPorFecha();
+    public Map<LocalDate, List<Reserva>> getReservasFuturasAgrupadasPorFecha() {
+        return reservas.stream()
+                .filter(r -> r.getFecha().isAfter(LocalDate.now()))
+                .sorted(Comparator.comparing(Reserva::getFecha))
+                .collect(Collectors.groupingBy(Reserva::getFecha));
+
+    }
 
     /** 15. Calcular qué porcentaje del total de reservas están canceladas. */
-    //  getPorcentajeCanceladas();
+    /**
+    public DoubleSummaryStatistics getPorcentajeCanceladas(){
+        return reservas.stream()
+                .map(EstadoReserva::)
+                .summaryStatistics();
+    }
+     */
 
 }
 
