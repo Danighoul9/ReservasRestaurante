@@ -237,7 +237,7 @@ public class App {
 
         /** 15. Porcentaje de reservas canceladas */
         IO.println("---------------------- 15. -------------------------");
-        //IO.println(rs.());
+        IO.println("Porcentaje reservas canceladas: " + rs.getPorcentajeCanceladas() + "%");
 
     }
 
