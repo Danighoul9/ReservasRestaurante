@@ -151,6 +151,13 @@ public class RestauranteService {
                 .summaryStatistics();
     }
      */
+    public double getPorcentajeCanceladas() {
+        long canceladas = reservas.stream()
+                .filter(r -> r.getEstado() == EstadoReserva.CANCELADA)
+                .count();
+
+        return (canceladas * 100.0) /  reservas.size();
+    }
 
 }
 

@@ -169,6 +169,7 @@ public class App {
     static void main(String[] args) {
         Restaurante r = new Restaurante("Restaurante AcalaMama");
 
+        //Introduccion de datos
         // CLIENTES
         cargarClientes(r);
         // RESERVAS
